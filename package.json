@@ -1,0 +1,24 @@
+{
+  "name": "saucedemo-playwright-tech-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript automation solution for the SauceDemo SDET technical exercise",
+  "scripts": {
+    "browsers:install": "playwright install",
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/node": "26.2.0",
+    "typescript": "7.0.2",
+    "dotenv": "17.2.1"
+  }
+}

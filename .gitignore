@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Playwright test artifacts
+test-results/
+playwright-report/
+
+# Playwright authentication state
+playwright/.auth/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
