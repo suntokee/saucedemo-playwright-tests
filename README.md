@@ -167,7 +167,16 @@ Tablet Safari:
 npx playwright test --project=tablet-safari
 ```
 
-## Run Tests Headed
+## Test Execution Mode
+
+Tests run headed by default when executed locally:
+
+```bash
+npx playwright test
+```
+
+NOTE: By default would CI runs test headless
+To explicitly run tests headed (e.g. on CI), use:
 
 ```bash
 npx playwright test --headed
