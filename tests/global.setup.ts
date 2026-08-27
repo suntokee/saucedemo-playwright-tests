@@ -20,9 +20,6 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
   }
 
   fs.mkdirSync(path.dirname(storageState), { recursive: true });
-  if (typeof baseURL !== 'string') {
-    throw new Error('Playwright baseURL must be configured.');
-  }
 
   // Chromium is intentional: SauceDemo storageState can be reused across Playwright browser projects.
   const browser = await chromium.launch();
@@ -35,7 +32,7 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
     await loginPage.login(ENV.sauceUser, ENV.saucePassword);
 
     await expect(page).toHaveURL(/\/inventory\.html$/);
-    await expect(page.locator('[data-test="title"]')).toHaveText('Products');
+    await expect(page.getByTestId('title')).toHaveText('Products');
 
     await context.storageState({ path: storageState });
   } finally {
