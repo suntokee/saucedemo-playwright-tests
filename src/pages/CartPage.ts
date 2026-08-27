@@ -8,12 +8,12 @@ export class CartPage {
   private readonly cartItems = () => this.page.getByTestId('inventory-item');
   private readonly checkoutButton = () => this.page.getByTestId('checkout');
   private cartItem(product: Product) {
-  return this.cartItems().filter({
-    has: this.page
-      .getByTestId('inventory-item-name')
-      .filter({ hasText: product.name }),
-  });
-}
+    return this.cartItems().filter({
+      has: this.page
+        .getByTestId('inventory-item-name')
+        .filter({ hasText: product.name }),
+    });
+  }
 
   async assertLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/\/cart\.html$/);
