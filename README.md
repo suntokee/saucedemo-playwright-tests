@@ -84,8 +84,8 @@ npm --version
 ## Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/suntokee/saucedemo-playwright-tests.git
+cd saucedemo-playwright-tests
 ```
 
 ## Install Dependencies
