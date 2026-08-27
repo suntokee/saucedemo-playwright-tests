@@ -166,6 +166,7 @@ Tablet Safari:
 ```bash
 npx playwright test --project=tablet-safari
 ```
+
 ## Useful npm Scripts
 
 | Script                  | Description                                                       |
@@ -178,7 +179,7 @@ npx playwright test --project=tablet-safari
 | `npm run test:ui`       | Run tests in Playwright UI mode                                   |
 | `npm run test:debug`    | Run tests with the Playwright debugger                            |
 | `npm run typecheck`     | Type-check the project with `tsc --noEmit`                        |
-| `npm run report`        | Open the Playwright HTML report  
+| `npm run report`        | Open the Playwright HTML report                                   |
 
 ## Test Execution Mode
 
