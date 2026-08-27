@@ -5,8 +5,15 @@ export class CartPage {
   constructor(private readonly page: Page) {}
 
   private readonly title = () => this.page.getByTestId('title');
-  private readonly cartItems = () => this.page.locator('.cart_item');
+  private readonly cartItems = () => this.page.getByTestId('inventory-item');
   private readonly checkoutButton = () => this.page.getByTestId('checkout');
+  private cartItem(product: Product) {
+  return this.cartItems().filter({
+    has: this.page
+      .getByTestId('inventory-item-name')
+      .filter({ hasText: product.name }),
+  });
+}
 
   async assertLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/\/cart\.html$/);
@@ -18,9 +25,13 @@ export class CartPage {
     await expect(this.cartItems()).toHaveCount(products.length);
 
     for (const product of products) {
+      const cartItem = this.cartItem(product);
+
+      await expect(cartItem).toHaveCount(1);
+
       await expect(
-        this.page.getByRole('link', { name: product.name, exact: true }),
-      ).toBeVisible();
+        cartItem.getByTestId('inventory-item-name'),
+      ).toHaveText(product.name);
     }
   }
 

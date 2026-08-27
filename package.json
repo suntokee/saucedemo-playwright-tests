@@ -6,9 +6,9 @@
   "scripts": {
     "browsers:install": "playwright install",
     "test": "playwright test",
-    "test:chromium": "playwright test --project=desktop-chrome --project=mobile-chrome --project=tablet-chrome",
-    "test:firefox": "playwright test --project=desktop-firefox",
-    "test:webkit": "playwright test --project=desktop-safari --project=mobile-safari --project=tablet-safari",
+    "test:chrome": "playwright test --project=\"*chrome\"",
+    "test:firefox": "playwright test --project=\"*firefox\"",
+    "test:safari": "playwright test --project=\"*safari\"",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
