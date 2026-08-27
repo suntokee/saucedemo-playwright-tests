@@ -17,7 +17,7 @@ export class ProductsPage {
 
   async addProducts(products: readonly Product[]): Promise<void> {
     for (const product of products) {
-      await this.page.getByTestId(`add-to-cart-${product.slug}`).click();
+      await this.page.getByTestId(`add-to-cart-${product.testIdSuffix}`).click();
     }
 
     await expect(this.cartBadge()).toHaveText(String(products.length));
