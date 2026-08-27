@@ -166,19 +166,34 @@ Tablet Safari:
 ```bash
 npx playwright test --project=tablet-safari
 ```
+## Useful npm Scripts
+
+| Script                  | Description                                                       |
+| ----------------------- | ----------------------------------------------------------------- |
+| `npm test`              | Run the full suite across all configured projects                 |
+| `npm run test:chromium` | Run the Chromium projects (desktop/mobile/tablet Chrome)          |
+| `npm run test:firefox`  | Run the Firefox project                                           |
+| `npm run test:webkit`   | Run the WebKit projects (desktop/mobile/tablet Safari)            |
+| `npm run test:headed`   | Run tests with the browser visible                                |
+| `npm run test:ui`       | Run tests in Playwright UI mode                                   |
+| `npm run test:debug`    | Run tests with the Playwright debugger                            |
+| `npm run typecheck`     | Type-check the project with `tsc --noEmit`                        |
+| `npm run report`        | Open the Playwright HTML report  
 
 ## Test Execution Mode
 
-Tests run headed by default when executed locally:
+Tests run **headed** by default when executed locally, and **headless** when the `CI` environment variable is set.
+
+Headed locally (default when CI is unset):
 
 ```bash
 npx playwright test
 ```
 
-When the CI environment variable is set, tests run headless. To explicitly run tests headed, use:
+Force headless locally:
 
 ```bash
-npx playwright test --headed
+CI=true npx playwright test
 ```
 
 ## Reporting
@@ -220,3 +235,7 @@ The solution uses:
 - Cross-browser projects for different Device i.e. Desktop, Mobile and Tablet
 
 The framework intentionally avoids unnecessary abstraction to keep the solution simple and maintainable.
+
+## Playwright Version Pin
+
+`@playwright/test` is pinned to **1.58.2** intentionally. Newer Playwright releases no longer support current WebKit builds on macOS 14 and may fall back to a frozen WebKit binary that fails during context/page setup with errors.
