@@ -3,9 +3,9 @@ import { expect, type Page } from '@playwright/test';
 export class LoginPage {
   constructor(private readonly page: Page) {}
 
-  private readonly username = () => this.page.locator('[data-test="username"]');
-  private readonly password = () => this.page.locator('[data-test="password"]');
-  private readonly loginButton = () => this.page.locator('[data-test="login-button"]');
+  private readonly username = () => this.page.getByTestId('username');
+  private readonly password = () => this.page.getByTestId('password');
+  private readonly loginButton = () => this.page.getByTestId('login-button');
 
   async goto(): Promise<void> {
     await this.page.goto('/');

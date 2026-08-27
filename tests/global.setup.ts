@@ -1,15 +1,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { chromium, expect, type FullConfig } from '@playwright/test';
+import { chromium, expect, selectors, type FullConfig } from '@playwright/test';
 import { LoginPage } from '../src/pages/LoginPage';
 import { ENV } from '../src/config/environment';
 
-export const AUTH_FILE = path.join(process.cwd(), 'playwright/.auth/user.json');
-
 export default async function globalSetup(config: FullConfig): Promise<void> {
-  fs.mkdirSync(path.dirname(AUTH_FILE), { recursive: true });
+  selectors.setTestIdAttribute('data-test');
+  const projectUse = config.projects[0]?.use;
 
-  const baseURL = config.projects[0]?.use.baseURL;
+  const baseURL = projectUse?.baseURL;
+  const storageState = projectUse?.storageState;
+
+  if (typeof baseURL !== 'string') {
+    throw new Error('Playwright baseURL must be configured.');
+  }
+
+  if (typeof storageState !== 'string') {
+    throw new Error('Playwright storageState path must be configured.');
+  }
+
+  fs.mkdirSync(path.dirname(storageState), { recursive: true });
   if (typeof baseURL !== 'string') {
     throw new Error('Playwright baseURL must be configured.');
   }
@@ -27,7 +37,7 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
     await expect(page).toHaveURL(/\/inventory\.html$/);
     await expect(page.locator('[data-test="title"]')).toHaveText('Products');
 
-    await context.storageState({ path: AUTH_FILE });
+    await context.storageState({ path: storageState });
   } finally {
     await browser.close();
   }

@@ -100,7 +100,7 @@ npm install
 npx playwright install
 ```
 
-This installs the Chromium (Chrome and Edge), Firefox and WebKit browser binaries required by the test projects.
+This installs the Playwright-managed browser binaries required by the configured Chromium, Firefox and WebKit projects.
 
 ## Environment Configuration
 
@@ -175,8 +175,7 @@ Tests run headed by default when executed locally:
 npx playwright test
 ```
 
-NOTE: By default would CI runs test headless
-To explicitly run tests headed (e.g. on CI), use:
+When the CI environment variable is set, tests run headless. To explicitly run tests headed, use:
 
 ```bash
 npx playwright test --headed
